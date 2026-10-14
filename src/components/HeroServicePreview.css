@@ -1,0 +1,39 @@
+.heroPreview {
+  position: relative;
+  z-index: 2;
+  padding: 28px 6vw 54px;
+  background: linear-gradient(180deg, #050505, rgba(13, 13, 13, 0.92));
+}
+
+.heroPreview::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8vw;
+  right: 8vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(168, 230, 62, 0.36), transparent);
+}
+
+.heroPreviewHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.heroPreviewHeader span:last-child { display: inline-flex; align-items: center; gap: 8px; }
+.heroPreviewHeader i { width: 5px; height: 5px; border-radius: 50%; background: #a8e63e; box-shadow: 0 0 8px rgba(168, 230, 62, 0.65); }
+
+@media (max-width: 900px) {
+  .heroPreview { padding: 24px 24px 42px; }
+  .heroPreview::before { left: 24px; right: 24px; }
+}
+
+@media (max-width: 540px) {
+  .heroPreviewHeader { align-items: flex-start; flex-direction: column; gap: 8px; }
+}

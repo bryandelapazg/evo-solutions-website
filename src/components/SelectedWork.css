@@ -1,0 +1,133 @@
+.selectedWork {
+  position: relative;
+  padding: 18px 6vw 34px;
+}
+
+.selectedWorkHeader { max-width: 620px; margin-bottom: 24px; }
+.selectedWorkHeader h2 { margin: 10px 0 8px; color: #fff; font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: -0.04em; }
+.selectedWorkHeader p { margin: 0; color: rgba(255, 255, 255, 0.55); font-size: 0.92rem; line-height: 1.6; }
+
+.selectedWorkGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  height: 56vh;
+  min-height: 340px;
+  max-height: 620px;
+}
+
+.selectedWorkCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1a1a1a;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 350ms ease;
+}
+
+.selectedWorkCard.is-featured { grid-column: span 2; grid-row: span 2; }
+
+.selectedWorkCard:hover,
+.selectedWorkCard:focus-visible { border-color: rgba(168, 230, 62, 0.5); outline: none; }
+
+.selectedWorkCard img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82) saturate(0.95);
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), filter 500ms ease;
+}
+
+.selectedWorkCard:hover img,
+.selectedWorkCard:focus-visible img { transform: scale(1.035); filter: brightness(0.68) saturate(1.02); }
+
+.selectedWorkOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13, 13, 13, 0.05) 40%, rgba(13, 13, 13, 0.85) 100%);
+  transition: opacity 350ms ease;
+}
+
+.selectedWorkCorner {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid rgba(168, 230, 62, 0.7);
+  border-left: 1px solid rgba(168, 230, 62, 0.7);
+  opacity: 0.6;
+}
+
+.selectedWorkIndex {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+}
+
+.selectedWorkInfo {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  right: 14px;
+  display: grid;
+  gap: 4px;
+}
+
+.selectedWorkInfo small { color: #a8e63e; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; }
+.selectedWorkInfo strong { color: #fff; font-size: 0.92rem; letter-spacing: -0.01em; }
+.selectedWorkInfo em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.6rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+.selectedWorkCard:hover .selectedWorkInfo em,
+.selectedWorkCard:focus-visible .selectedWorkInfo em { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .selectedWork { padding: 14px 0 30px 24px; }
+  .selectedWorkHeader { padding-right: 24px; }
+  .selectedWorkGrid {
+    display: flex;
+    height: 58vh;
+    min-height: 300px;
+    gap: 12px;
+    padding-right: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .selectedWorkGrid::-webkit-scrollbar { display: none; }
+  .selectedWorkCard,
+  .selectedWorkCard.is-featured {
+    grid-column: auto;
+    grid-row: auto;
+    flex: 0 0 84vw;
+    scroll-snap-align: start;
+  }
+  .selectedWorkInfo em { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selectedWorkCard img { transition-duration: 0.01ms; }
+  .selectedWorkInfo em { transition-duration: 0.01ms; }
+}

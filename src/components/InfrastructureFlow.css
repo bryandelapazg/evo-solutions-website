@@ -1,0 +1,450 @@
+.infrastructureFlow {
+  position: relative;
+  padding: 112px 8vw 96px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.22), rgba(13, 13, 13, 0.08));
+}
+
+.flowIntro {
+  position: relative;
+  z-index: 1;
+  max-width: 650px;
+}
+
+.flowIntro h2 {
+  max-width: 680px;
+  margin: 18px 0;
+  color: #fff;
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.flowIntro p {
+  max-width: 550px;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.7;
+}
+
+.flowCta {
+  margin-top: 26px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #a8e63e;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.flowCta span {
+  display: inline-block;
+  margin-left: 7px;
+  transition: transform 300ms ease;
+}
+
+.flowCta:hover span { transform: translateX(5px); }
+
+.flowDiagram {
+  position: relative;
+  max-width: 1240px;
+  margin: 54px auto 0;
+}
+
+.flowSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.flowTrack,
+.flowPulsePath {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.flowTrack {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.5;
+}
+
+.flowPulsePath {
+  stroke: #a8e63e;
+  stroke-width: 2;
+  stroke-dasharray: 0.035 0.965;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(168, 230, 62, 0.65));
+}
+
+.flowIsActive .flowPulsePath {
+  animation: flowPulse 1.45s ease-in-out forwards;
+  animation-delay: calc(var(--flow-step, 0) * 0.8s);
+}
+
+.connection-0 { --flow-step: 0; }
+.connection-1 { --flow-step: 1; }
+.connection-2 { --flow-step: 2; }
+.connection-3 { --flow-step: 3; }
+.connection-4 { --flow-step: 4; }
+
+.flowSvgNode {
+  cursor: pointer;
+  outline: none;
+}
+
+.nodePlate {
+  fill: rgba(13, 13, 13, 0.88);
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1;
+  transition: fill 350ms ease, stroke 350ms ease, filter 350ms ease, transform 350ms ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.nodePort {
+  fill: #1a1a1a;
+  stroke: rgba(255, 255, 255, 0.36);
+  stroke-width: 1.5;
+  transition: fill 350ms ease, stroke 350ms ease, filter 350ms ease, r 350ms ease;
+}
+
+.flowSvgNode text {
+  fill: rgba(255, 255, 255, 0.56);
+  font: 700 10px Inter, system-ui, sans-serif;
+  letter-spacing: 1px;
+  transition: fill 350ms ease;
+}
+
+.flowSvgNode:hover .nodePlate,
+.flowSvgNode:focus-visible .nodePlate,
+.flowSvgNode.nodeSelected .nodePlate {
+  fill: rgba(168, 230, 62, 0.08);
+  stroke: rgba(168, 230, 62, 0.75);
+  filter: drop-shadow(0 0 12px rgba(168, 230, 62, 0.14));
+  transform: scale(1.035);
+}
+
+.flowSvgNode:hover .nodePort,
+.flowSvgNode:focus-visible .nodePort,
+.flowSvgNode.nodeSelected .nodePort {
+  fill: #a8e63e;
+  stroke: #a8e63e;
+  filter: drop-shadow(0 0 8px rgba(168, 230, 62, 0.7));
+  r: 10;
+}
+
+.flowSvgNode:hover text,
+.flowSvgNode:focus-visible text,
+.flowSvgNode.nodeSelected text { fill: #fff; }
+
+.flowSvgNode.nodeDimmed { opacity: 0.42; }
+
+.flowConnection.pathDimmed .flowTrack { opacity: 0.28; }
+
+.flowConnection.pathActive .flowTrack {
+  stroke: rgba(168, 230, 62, 0.62);
+  filter: drop-shadow(0 0 4px rgba(168, 230, 62, 0.18));
+}
+
+.flowConnection.pathActive .flowPulsePath { opacity: 1; }
+
+.flowMobileNodes { display: none; }
+
+.flowInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  max-width: 460px;
+  min-height: 58px;
+  margin: 6px auto 0;
+  padding: 18px 20px;
+  border-left: 1px solid rgba(168, 230, 62, 0.65);
+  background: rgba(26, 26, 26, 0.46);
+}
+
+.flowInfoIndex {
+  color: #a8e63e;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+}
+
+.flowInfo strong {
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.flowInfo p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.flowMeta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0 0;
+}
+
+.flowMeta div { min-width: 0; }
+
+.flowMeta dt {
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+}
+
+.flowMeta dd {
+  margin: 5px 0 0;
+  color: #a8e63e;
+  font-size: 0.64rem;
+  line-height: 1.35;
+}
+
+.rackDetail {
+  max-width: 760px;
+  margin: 24px auto 0;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(13, 13, 13, 0.56);
+}
+
+.rackHeader,
+.rackBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rackHeader > span:last-child {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+}
+
+.rackBody { align-items: stretch; margin-top: 18px; }
+
+.rackVisual {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.rackPart {
+  min-height: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(26, 26, 26, 0.7);
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 300ms ease, background 300ms ease, color 300ms ease;
+}
+
+.rackPart > span { color: rgba(255, 255, 255, 0.3); font-size: 0.55rem; }
+.rackPart i { width: 100%; height: 3px; background: rgba(255, 255, 255, 0.12); }
+.rackPart strong { font-size: 0.58rem; letter-spacing: 0.08em; }
+
+.rackPart:hover,
+.rackPart:focus-visible,
+.rackPartActive {
+  border-color: rgba(168, 230, 62, 0.65);
+  background: rgba(168, 230, 62, 0.08);
+  color: #fff;
+}
+
+.rackPartActive i { background: #a8e63e; box-shadow: 0 0 8px rgba(168, 230, 62, 0.5); }
+
+.rackDescription {
+  width: 190px;
+  margin: 0;
+  align-self: center;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+@keyframes flowPulse {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  12% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .infrastructureFlow { padding: 88px 24px 78px; }
+  .flowDiagram { margin-top: 42px; }
+}
+
+@media (max-width: 620px) {
+  .flowSvg { display: none; }
+
+  .flowMobileNodes {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mobileFlowStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobileFlowNode {
+    width: 100%;
+    min-height: 62px;
+    display: grid;
+    grid-template-columns: 42px 1fr 20px;
+    align-items: center;
+    gap: 14px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(13, 13, 13, 0.86);
+    color: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    transition: border-color 350ms ease, background 350ms ease, transform 350ms ease;
+  }
+
+  .mobileFlowNode:hover,
+  .mobileFlowNode:focus-visible,
+  .mobileFlowNode.nodeSelected {
+    border-color: rgba(168, 230, 62, 0.72);
+    background: rgba(168, 230, 62, 0.07);
+    transform: scale(1.015);
+  }
+
+  .mobileNodeIndex {
+    color: #a8e63e;
+    font-size: 0.65rem;
+  }
+
+  .mobileNodeDot {
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    justify-self: end;
+    transition: background 350ms ease, box-shadow 350ms ease, border-color 350ms ease;
+  }
+
+  .mobileFlowNode.nodeSelected .mobileNodeDot {
+    border-color: #a8e63e;
+    background: #a8e63e;
+    box-shadow: 0 0 10px rgba(168, 230, 62, 0.7);
+  }
+
+  .mobileFlowNode.nodeDimmed { opacity: 0.46; }
+
+  .mobileFlowConnector {
+    position: relative;
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .mobileFlowConnector.connectorDimmed { opacity: 0.45; }
+  .mobileFlowConnector.connectorActive { background: rgba(168, 230, 62, 0.55); }
+
+  .flowIsActive .mobileFlowConnector::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #a8e63e;
+    box-shadow: 0 0 8px rgba(168, 230, 62, 0.72);
+    animation: mobileFlowPulse 1.45s ease-in-out both;
+    animation-delay: calc(var(--mobile-flow-step, 0) * 0.8s);
+  }
+
+  .mobileFlowStep:nth-child(1) { --mobile-flow-step: 0; }
+  .mobileFlowStep:nth-child(2) { --mobile-flow-step: 1; }
+  .mobileFlowStep:nth-child(3) { --mobile-flow-step: 2; }
+  .mobileFlowStep:nth-child(4) { --mobile-flow-step: 3; }
+  .mobileFlowStep:nth-child(5) { --mobile-flow-step: 4; }
+
+  .flowInfo { margin-top: 30px; }
+  .flowMeta { grid-template-columns: 1fr; gap: 10px; }
+  .rackDetail { padding: 16px; }
+  .rackHeader { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .rackBody { flex-direction: column; }
+  .rackVisual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rackDescription { width: auto; }
+}
+
+@keyframes mobileFlowPulse {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(32px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flowPulsePath,
+  .mobileFlowConnector::after { animation: none; opacity: 0; }
+
+  .nodePlate,
+  .nodePort,
+  .mobileFlowNode { transition-duration: 0.01ms; }
+}
+
+/* ===== REFINED FLOW TIMING ===== */
+
+.flowTrack { stroke: rgba(255, 255, 255, 0.13); }
+
+.flowPulsePath {
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 3px rgba(168, 230, 62, 0.48));
+}
+
+.flowConnection {
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 700ms ease;
+}
+
+.flowConnection.pathActive { filter: drop-shadow(0 0 5px rgba(168, 230, 62, 0.12)); }
+.flowConnection.pathDimmed { opacity: 0.58; }
+
+.nodePlate,
+.nodePort,
+.flowSvgNode text {
+  transition-duration: 420ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flowInfo {
+  animation: flowInfoIn 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 700ms ease, background 700ms ease;
+}
+
+.rackDetail { animation: rackIn 850ms cubic-bezier(0.16, 1, 0.3, 1); }
+
+@keyframes flowInfoIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rackIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flowInfo,
+  .rackDetail { animation: none; }
+}

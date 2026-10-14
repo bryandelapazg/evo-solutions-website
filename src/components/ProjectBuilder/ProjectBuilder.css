@@ -1,0 +1,232 @@
+.projectBuilder {
+  position: relative;
+  padding: 112px 8vw 96px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.12), rgba(13, 13, 13, 0.3));
+}
+
+.projectBuilder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 16% 28%, rgba(168, 230, 62, 0.045), transparent 28%);
+}
+
+.projectBuilderIntro,
+.projectBuilderShell,
+.projectBuilderFooter {
+  position: relative;
+  z-index: 1;
+}
+
+.projectBuilderIntro { max-width: 640px; }
+
+.projectBuilderIntro h2 {
+  margin: 17px 0 15px;
+  color: #fff;
+  font-size: clamp(2.25rem, 4vw, 4.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.projectBuilderIntro p {
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.7;
+}
+
+.projectBuilderShell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 26px;
+  margin-top: 58px;
+}
+
+.projectBuilderMain,
+.projectSummary {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(13, 13, 13, 0.54);
+}
+
+.projectBuilderMain { padding: 26px; }
+
+.projectProgressHeader {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.projectProgressHeader strong { color: #fff; font-size: 0.64rem; }
+.projectProgressHeader .readyStatus { justify-self: end; }
+.readyStatus { display: inline-flex; align-items: center; gap: 7px; }
+.readyStatus i { width: 5px; height: 5px; border-radius: 50%; background: #a8e63e; box-shadow: 0 0 9px rgba(168, 230, 62, 0.55); }
+
+.projectProgressTrack {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  margin-top: 17px;
+}
+
+.projectProgressTrack button {
+  height: 3px;
+  padding: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background 450ms ease, box-shadow 450ms ease;
+}
+
+.projectProgressTrack button.is-complete { background: #a8e63e; box-shadow: 0 0 8px rgba(168, 230, 62, 0.28); }
+.projectProgressTrack button:focus-visible { outline: 2px solid #a8e63e; outline-offset: 3px; }
+
+.projectStepHeader { margin: 42px 0 22px; }
+.projectStepHeader > span { color: #a8e63e; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.17em; }
+.projectStepHeader h3 { margin: 10px 0 7px; color: #fff; font-size: clamp(1.45rem, 2.2vw, 2rem); letter-spacing: -0.035em; }
+.projectStepHeader small { color: rgba(255, 255, 255, 0.42); font-size: 0.78rem; }
+
+.projectOptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.projectOptionsSingle { grid-template-columns: 1fr; }
+
+.projectOption {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(26, 26, 26, 0.42);
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 300ms ease, background 300ms ease, transform 300ms ease, color 300ms ease;
+}
+
+.projectOption:hover,
+.projectOption:focus-visible { border-color: rgba(168, 230, 62, 0.55); color: #fff; transform: translateY(-1px); }
+.projectOption.is-selected { border-color: rgba(168, 230, 62, 0.9); background: rgba(168, 230, 62, 0.08); color: #fff; box-shadow: inset 3px 0 #a8e63e; }
+.projectOption:focus-visible { outline: 2px solid rgba(168, 230, 62, 0.75); outline-offset: 3px; }
+
+.optionIndicator { width: 9px; height: 9px; flex: 0 0 auto; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 50%; transition: background 300ms ease, border-color 300ms ease, box-shadow 300ms ease; }
+.projectOption.is-selected .optionIndicator { border-color: #a8e63e; background: #a8e63e; box-shadow: 0 0 9px rgba(168, 230, 62, 0.55); }
+.optionCopy { display: flex; flex-direction: column; gap: 3px; }
+.optionCopy strong { font-size: 0.69rem; letter-spacing: 0.1em; }
+.optionCopy small { color: rgba(255, 255, 255, 0.44); font-size: 0.72rem; }
+.optionState { margin-left: auto; color: #a8e63e; font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; }
+
+.projectFields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.projectContactFields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.projectFields label { display: flex; flex-direction: column; gap: 8px; color: rgba(255, 255, 255, 0.5); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; }
+.projectFields input,
+.projectFields textarea { width: 100%; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(26, 26, 26, 0.54); color: #fff; padding: 13px 12px; outline: none; font: inherit; font-size: 0.82rem; letter-spacing: 0; transition: border-color 300ms ease, box-shadow 300ms ease, background 300ms ease; }
+.projectFields textarea { resize: vertical; line-height: 1.45; }
+.projectFields input::placeholder,
+.projectFields textarea::placeholder { color: rgba(255, 255, 255, 0.28); }
+.projectFields input:focus,
+.projectFields textarea:focus { border-color: rgba(168, 230, 62, 0.72); background: rgba(168, 230, 62, 0.04); box-shadow: 0 0 0 3px rgba(168, 230, 62, 0.08); }
+.projectNotes { grid-column: 1 / -1; }
+.projectNotes span { color: rgba(255, 255, 255, 0.28); font-size: 0.53rem; }
+
+.projectValidation { margin: 18px 0 0; color: #d4ed9d; font-size: 0.78rem; }
+.projectNavigation { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 28px; }
+.projectBack,
+.projectNext,
+.whatsappButton { min-height: 44px; border: 1px solid rgba(255, 255, 255, 0.15); background: transparent; color: rgba(255, 255, 255, 0.55); cursor: pointer; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.13em; transition: border-color 300ms ease, background 300ms ease, color 300ms ease, transform 300ms ease, box-shadow 300ms ease; }
+.projectBack { padding: 0 15px; }
+.projectNext { margin-left: auto; padding: 0 17px; border-color: rgba(168, 230, 62, 0.72); background: rgba(168, 230, 62, 0.08); color: #a8e63e; }
+.projectBack:hover:not(:disabled),
+.projectNext:hover,
+.whatsappButton:hover:not(:disabled) { border-color: #a8e63e; color: #fff; transform: translateY(-2px); }
+.projectNext span,
+.whatsappButton span { display: inline-block; margin-left: 7px; transition: transform 300ms ease; }
+.projectNext:hover span,
+.whatsappButton:hover span { transform: translateX(4px); }
+.projectBack:disabled { cursor: not-allowed; opacity: 0.28; }
+.projectBack:focus-visible,
+.projectNext:focus-visible,
+.whatsappButton:focus-visible { outline: 2px solid rgba(168, 230, 62, 0.8); outline-offset: 4px; }
+.projectSubmitted { margin: 15px 0 0; color: #a8e63e; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; }
+
+.projectSummary { align-self: start; padding: 24px; position: sticky; top: 105px; }
+.projectSummaryCompleted { position: static; }
+.summaryHeader { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; }
+.summaryPulse { width: 6px; height: 6px; border-radius: 50%; background: #a8e63e; box-shadow: 0 0 9px rgba(168, 230, 62, 0.55); }
+.summaryProjectId { display: grid; gap: 7px; margin: 20px 0 23px; padding: 14px; border-left: 2px solid #a8e63e; background: rgba(168, 230, 62, 0.06); }
+.summaryProjectId span { color: rgba(255, 255, 255, 0.38); font-size: 0.55rem; letter-spacing: 0.16em; }
+.summaryProjectId strong { color: #a8e63e; font-size: 1.1rem; letter-spacing: 0.12em; }
+.summaryRows { display: grid; gap: 18px; padding-top: 21px; }
+.summaryRow { display: grid; gap: 6px; }
+.summaryRow > span { color: rgba(255, 255, 255, 0.32); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.17em; }
+.summaryRow strong { color: rgba(255, 255, 255, 0.82); font-size: 0.75rem; line-height: 1.45; font-weight: 500; }
+.summaryMultiline { white-space: pre-line; }
+.summaryStatus { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 2px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.summaryStatus span { color: rgba(255, 255, 255, 0.32); font-size: 0.55rem; letter-spacing: 0.17em; }
+.summaryStatus strong { color: #a8e63e; font-size: 0.68rem; letter-spacing: 0.12em; }
+
+.projectBuilderFooter { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 18px; }
+.projectBuilderFooter p { max-width: 650px; color: rgba(255, 255, 255, 0.34); font-size: 0.67rem; line-height: 1.5; }
+.projectDraftNote { color: rgba(255, 255, 255, 0.28) !important; }
+.projectBuilderFooter a { color: rgba(168, 230, 62, 0.78); }
+.whatsappButton { flex: 0 0 auto; padding: 0 15px; border-color: rgba(255, 255, 255, 0.2); }
+.whatsappButton:disabled { cursor: not-allowed; opacity: 0.35; }
+
+.projectSuccess { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr); gap: 28px; align-items: start; margin-top: 58px; }
+.projectSuccessIntro { padding: 24px 0; }
+.projectSuccessIntro h3 { margin: 18px 0 14px; color: #fff; font-size: clamp(2rem, 3.8vw, 3.6rem); line-height: 1; letter-spacing: -0.05em; }
+.projectSuccessIntro p { max-width: 440px; color: rgba(255, 255, 255, 0.58); line-height: 1.65; }
+.successReference { display: grid; gap: 8px; margin-top: 30px; padding-left: 14px; border-left: 2px solid #a8e63e; }
+.successReference span { color: rgba(255, 255, 255, 0.36); font-size: 0.58rem; letter-spacing: 0.16em; }
+.successReference strong { color: #a8e63e; font-size: 1.2rem; letter-spacing: 0.12em; }
+.successActions { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.successAction { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(26, 26, 26, 0.42); color: rgba(255, 255, 255, 0.72); cursor: pointer; text-decoration: none; font: inherit; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; transition: border-color 300ms ease, background 300ms ease, color 300ms ease, transform 300ms ease; }
+.successAction:hover:not(:disabled), .successAction:focus-visible { border-color: #a8e63e; color: #fff; background: rgba(168, 230, 62, 0.08); transform: translateY(-2px); outline: none; }
+.successAction:disabled, .successAction[aria-disabled="true"] { cursor: not-allowed; opacity: 0.36; }
+.successPrimary { border-color: rgba(168, 230, 62, 0.72); color: #a8e63e; }
+.startNewProject { grid-column: 1 / -1; justify-self: center; padding: 0; border: 0; background: transparent; color: rgba(255, 255, 255, 0.42); cursor: pointer; font: inherit; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; transition: color 300ms ease; }
+.startNewProject:hover, .startNewProject:focus-visible { color: #a8e63e; outline: none; }
+
+@media (max-width: 900px) {
+  .projectBuilder { padding: 88px 24px 78px; }
+  .projectBuilderShell { grid-template-columns: 1fr; margin-top: 44px; }
+  .projectSummary { position: static; order: -1; }
+  .projectSuccess { grid-template-columns: 1fr; gap: 18px; margin-top: 44px; }
+  .projectSuccessIntro { padding: 0; }
+}
+
+@media (max-width: 620px) {
+  .projectBuilderMain { padding: 18px; }
+  .projectProgressHeader { grid-template-columns: 1fr auto; }
+  .projectProgressHeader .readyStatus { grid-column: 1 / -1; justify-self: start; margin-top: 5px; }
+  .projectStepHeader { margin-top: 32px; }
+  .projectOptions,
+  .projectFields,
+  .projectContactFields { grid-template-columns: 1fr; }
+  .projectOption { min-height: 60px; }
+  .projectNotes { grid-column: auto; }
+  .projectBuilderFooter { align-items: stretch; flex-direction: column; gap: 14px; }
+  .whatsappButton { align-self: flex-start; }
+  .successActions { grid-template-columns: 1fr; }
+  .successPrimary { order: -1; }
+  .successAction { min-height: 54px; }
+  .startNewProject { margin-top: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectOption,
+  .projectProgressTrack button,
+  .projectFields input,
+  .projectFields textarea,
+  .projectBack,
+  .projectNext,
+  .whatsappButton { transition-duration: 0.01ms; }
+}
